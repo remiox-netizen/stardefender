@@ -1,7 +1,5 @@
 name: Build Android APK
 
-# Paleidimas: GitHub svetainėje Actions -> "Build Android APK" -> Run workflow
-# (taip pat paleidžiamas automatiškai kiekvieną kartą įkėlus failus).
 on:
   workflow_dispatch:
   push:
@@ -9,17 +7,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
+
     steps:
       - name: Atsisiųsti kodą
         uses: actions/checkout@v4
 
-      - name: Sukompiliuoti APK (buildozer)
+      - name: Sukompiliuoti APK
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
-          command: buildozer android debug
           buildozer_version: stable
 
       - name: Išsaugoti APK
